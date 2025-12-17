@@ -1,3 +1,4 @@
+import "./style.css";
 const games = [
   {
     id: 1,
@@ -81,10 +82,34 @@ const games = [
   },
 ];
 
+let gamesComponents = [];
+games.forEach((game) => {
+  gamesComponents.push(<h2>{game.title}</h2>);
+});
 function App() {
   return (
     <div className="app">
-      <h1>Meus Jogos</h1>
+      <h1 className="title">Meus Jogos</h1>
+
+      <div className="games-grid">
+        {games.map((game) => {
+          return (
+            <div className="game-card" key={game.id}>
+              <img
+                className="game-image"
+                src={game.coverImage}
+                alt={game.title}
+              />
+
+              <div className="game-info">
+                <h2 className="game-title">{game.title}</h2>
+                <span className="game-year">{game.releaseYear}</span>
+                <p className="game-description">{game.description}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
